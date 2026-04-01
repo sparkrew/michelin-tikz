@@ -1,0 +1,724 @@
+\documentclass[11pt]{article}
+
+% A LaTeX reproduction of "Persecution of New Ideas" by C. L. Blood,
+% as it appeared in Asher & Adams' New Columbian Rail Road Atlas and
+% Pictorial Album of American Industry (1875):
+% <http://www.davidrumsey.com/luna/servlet/s/8s969o>
+%
+% Typeset by Tristan Miller <http://www.nothingisreal.com/>
+% November 2015
+% 
+% The article text and images are in the public domain.
+% The LaTeX code is released under the Creative Commons
+% Attribution 4.0 International (CC BY 4.0) licence.
+
+% Page size, margins, and columns
+\usepackage[
+paperwidth=594mm,
+paperheight=841mm,
+left=36mm,
+right=36mm,
+top=52mm,
+bottom=40mm
+]{geometry}
+\pagestyle{empty}
+\usepackage{multicol}
+\setlength\columnsep{10mm}
+\setlength{\parindent}{8mm}
+%\renewcommand{\columnseprulecolor}{\color{red}}
+% Font and microtypography
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+% Borders and figures
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{eso-pic}
+\usepackage{wrapfig}
+\usepackage{wallpaper}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{svg}
+\usepackage{emoji}
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, begin, path, end, xcsale, globalscale,def,newcommand,draw,line,width,cap, join, fill},
+  keywordstyle=\color{magenta}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this,for},
+  ndkeywordstyle=\color{magenta}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+
+\lstset{
+   language=JavaScript,
+   extendedchars=true,
+  % basicstyle=\scriptsize\ttfamily\bfseries,
+   showstringspaces=false,
+   showspaces=false,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+\definecolor{bordercolour}{RGB}{206,93,75}
+\AddToShipoutPictureBG*{
+  \begin{tikzpicture}[overlay,remember picture]
+
+    % border corners
+    \coordinate (NW) at ($ (current page.north west) + (26mm,-30mm) $);
+    \coordinate (NE) at ($ (current page.north east) + (-28mm,-30mm) $);
+    \coordinate (SW) at ($ (current page.south west) + (26mm,28mm) $);
+    \coordinate (SE) at ($ (current page.south east) + (-28mm,28mm) $);
+
+    % old frame back, outer rectangle
+    % \draw[line width=3mm, color=bordercolour]
+    %   ($ (current page.north west) + (26mm,-38mm) $)
+    %   rectangle
+    %   ($ (current page.south east) + (-26mm,26mm) $);
+
+    %  inner rectangle
+    \draw[line width=1.5pt, color=red]
+      ($ (current page.north west) + (31.5mm,-35mm) $)
+      rectangle
+      ($ (current page.south east) + (-29mm,29.5mm) $);
+
+    % top row
+    \foreach \i in {0,1,...,105}{
+      \pic at ($ (NW)!\i/105!(NE) $) [scale=0.018] {michelin};
+    }
+
+    % bottom row
+    \foreach \i in {0,1,...,105}{
+      \pic at ($ (SW)!\i/105!(SE) $) [scale=0.018] {michelin};
+    }
+
+    % left column
+    \foreach \i in {1,2,...,120}{
+      \pic at ($ (NW)!\i/121!(SW) $) [scale=0.018] {michelin};
+    }
+
+    % right column
+    \foreach \i in {1,2,...,120}{
+      \pic at ($ (NE)!\i/121!(SE) $) [scale=0.018] {michelin};
+    }
+
+  \end{tikzpicture}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% michelin of the frame 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzset{
+  pics/michelin/.style={
+    code={
+      \path[draw=red, line width=1.95pt, line cap=round, line join=round, fill=none]
+        (12.118, 2.567) 
+        .. controls (10.166, 2.567) and (9.384, 1.693) .. 
+        (8.895, 0.275)
+        .. controls (8.590, -0.900) and (8.467, -2.540) ..
+        (9.948, -6.297)
+        .. controls (7.902, -3.316) and (6.006, -1.826) ..
+        (4.260, -1.826)
+        .. controls (2.514, -1.826) and (1.402, -3.316) ..
+        (1.402, -5.001)
+        .. controls (1.402, -7.206) and (3.757, -8.502) ..
+        (8.467, -8.890)
+        -- (8.467, -9.657)
+        .. controls (3.757, -10.063) and (1.402, -11.359) ..
+        (1.402, -13.547)
+        .. controls (1.402, -15.232) and (2.514, -16.722) ..
+        (4.260, -16.722)
+        .. controls (6.006, -16.722) and (7.902, -15.232) ..
+        (9.948, -12.224)
+        .. controls (8.467, -15.981) and (8.590, -17.621) ..
+        (8.895, -18.796)
+        .. controls (9.384, -20.214) and (10.166, -21.087) ..
+        (12.118, -21.087)
+        .. controls (14.070, -21.087) and (14.852, -20.214) ..
+        (15.341, -18.796)
+        .. controls (15.646, -17.621) and (15.769, -15.981) ..
+        (14.288, -12.224)
+        .. controls (16.334, -15.232) and (18.230, -16.722) ..
+        (19.976, -16.722)
+        .. controls (21.722, -16.722) and (22.834, -15.232) ..
+        (22.834, -13.547)
+        .. controls (22.834, -11.359) and (20.479, -10.063) ..
+        (15.743, -9.657)
+        -- (15.743, -8.890)
+        .. controls (20.479, -8.502) and (22.834, -7.206) ..
+        (22.834, -5.001)
+        .. controls (22.834, -3.316) and (21.722, -1.826) ..
+        (19.976, -1.826)
+        .. controls (18.230, -1.826) and (16.334, -3.316) ..
+        (14.288, -6.297)
+        .. controls (15.769, -2.540) and (15.646, -0.900) ..
+        (15.341, 0.275)
+        .. controls (14.852, 1.693) and (14.070, 2.567) ..
+        (12.118, 2.567)
+        -- cycle;
+    }
+  }
+}
+
+\definecolor{michelinred}{HTML}{D3072B}
+ 
+% Define the Michelin Man pic with scaled coordinates
+\tikzset{
+  pics/michelinman/.style args={#1}{
+    code={
+      % Scale factor applied directly to coordinates (SVG coords / 100)
+      % This keeps us well within TikZ's dimension limits
+      \begin{scope}[yscale=-1]
+        \fill[#1] 
+          (6.24,0.69) -- (6.24,0.20)
+          (6.24,0.20) .. controls (6.24,-0.54) and (5.77,-1.02) .. (5.05,-1.02)
+          (5.05,-1.02) .. controls (4.27,-1.02) and (3.83,-0.53) .. (3.83,0.29)
+          (3.83,0.29) -- (3.83,0.44)
+          (3.83,0.44) .. controls (3.83,0.48) and (3.84,0.51) .. (3.84,0.51)
+          (3.84,0.51) -- (3.85,0.68)
+          (3.85,0.68) .. controls (3.11,0.15) and (2.52,0.15) .. (2.52,0.15)
+          (2.52,0.15) .. controls (2.06,0.15) and (1.64,0.46) .. (1.64,0.46)
+          (1.64,0.46) .. controls (1.24,0.75) and (1.05,1.22) .. (1.05,1.22)
+          (1.05,1.22) .. controls (0.91,1.55) and (0.91,1.88) .. (0.91,1.88)
+          (0.91,1.88) .. controls (0.91,2.89) and (2.07,3.42) .. (2.07,3.42)
+          (2.07,3.42) -- (2.22,3.49)
+          (2.22,3.49) .. controls (0.91,4.09) and (0.91,5.11) .. (0.91,5.11)
+          (0.91,5.11) .. controls (0.91,5.80) and (1.39,6.32) .. (1.39,6.32)
+          (1.39,6.32) .. controls (1.39,6.84) and (1.99,6.89) .. (1.99,6.89)
+          (1.99,6.89) -- (2.12,6.79)
+          (2.12,6.79) .. controls (2.10,6.99) and (2.10,7.27) .. (2.10,7.27)
+          (2.10,7.27) .. controls (2.10,8.02) and (2.57,8.495) .. (2.57,8.495)
+          (2.57,8.495) .. controls (2.57,8.97) and (3.36,8.97) .. (3.36,8.97)
+          (3.36,8.97) .. controls (4.15,8.97) and (4.595,8.475) .. (4.595,8.475)
+          (4.595,8.475) .. controls (5.03,7.98) and (5.03,7.58) .. (5.03,7.58)
+          (5.03,7.58) -- (5.03,7.19)
+          (5.03,7.19) .. controls (5.77,7.72) and (6.35,7.72) .. (6.35,7.72)
+          (6.35,7.72) .. controls (7.00,7.72) and (7.475,7.195) .. (7.475,7.195)
+          (7.475,7.195) .. controls (7.95,6.67) and (7.95,5.99) .. (7.95,5.99)
+          (7.95,5.99) .. controls (7.95,4.97) and (6.79,4.44) .. (6.79,4.44)
+          (6.79,4.44) -- (6.64,4.37)
+          (6.64,4.37) .. controls (7.95,3.77) and (7.95,2.76) .. (7.95,2.76)
+          (7.95,2.76) .. controls (7.95,2.11) and (7.48,1.57) .. (7.48,1.57)
+          (7.48,1.57) .. controls (7.48,1.03) and (6.345,1.03) .. (6.345,1.03)
+          (6.345,1.03) .. controls (5.175,1.45) and (5.175,1.45) .. (5.175,1.45)
+          (5.175,1.45) -- (5.40,-1.34)
+          (5.40,-1.34) .. controls (6.56,-3.03) and (7.55,-3.03) .. (7.55,-3.03)
+          (7.55,-3.03) .. controls (7.96,-3.03) and (8.295,-2.66) .. (8.295,-2.66)
+          (8.295,-2.66) .. controls (8.63,-2.29) and (8.63,-2.20) .. (8.63,-2.20)
+          (8.63,-2.20) .. controls (8.63,-0.96) and (5.95,-0.73) .. (5.95,-0.73)
+          (5.95,-0.73) -- (5.95,-0.44)
+          (5.95,-0.44) .. controls (7.28,-0.33) and (7.955,0.04) .. (7.955,0.04)
+          (7.955,0.04) .. controls (8.63,0.41) and (8.63,1.03) .. (8.63,1.03)
+          (8.63,1.03) .. controls (8.63,1.48) and (8.305,1.855) .. (8.305,1.855)
+          (8.305,1.855) .. controls (7.98,2.23) and (7.55,2.23) .. (7.55,2.23)
+          (7.55,2.23) .. controls (6.54,2.23) and (5.40,0.53) .. (5.40,0.53)
+          (5.40,0.53) -- (5.14,0.68)
+          (5.14,0.68) .. controls (5.71,1.84) and (5.71,2.64) .. (5.71,2.64)
+          (5.71,2.64) .. controls (5.71,3.88) and (4.58,3.88) .. (4.58,3.88)
+          (4.58,3.88) .. controls (4.04,3.88) and (3.74,3.55) .. (3.74,3.55)
+          (3.74,3.55) .. controls (3.45,3.20) and (3.45,2.67) .. (3.45,2.67)
+          (3.45,2.67) .. controls (3.45,1.87) and (4.02,0.68) .. (4.02,0.68)
+          (4.02,0.68) -- (3.76,0.54)
+          (3.76,0.54) .. controls (2.62,2.24) and (1.61,2.24) .. (1.61,2.24)
+          (1.61,2.24) .. controls (1.20,2.24) and (0.865,1.885) .. (0.865,1.885)
+          (0.865,1.885) .. controls (0.53,1.53) and (0.53,1.06) .. (0.53,1.06)
+          (0.53,1.06) .. controls (0.53,-0.18) and (3.20,-0.41) .. (3.20,-0.41)
+          (3.20,-0.41) -- (3.20,-0.70)
+          (3.20,-0.70) .. controls (0.53,-0.92) and (0.53,-2.17) .. (0.53,-2.17)
+          (0.53,-2.17) .. controls (0.53,-2.61) and (0.85,-2.99) .. (0.85,-2.99)
+          (0.85,-2.99) .. controls (1.17,-3.37) and (1.61,-3.37) .. (1.61,-3.37)
+          (1.61,-3.37) .. controls (2.60,-3.37) and (3.76,-1.68) .. (3.76,-1.68)
+          (3.76,-1.68) -- (4.02,-1.82)
+          (4.02,-1.82) .. controls (3.45,-2.99) and (3.45,-3.82) .. (3.45,-3.82)
+          (3.45,-3.82) .. controls (3.45,-4.35) and (3.74,-4.70) .. (3.74,-4.70)
+          (3.74,-4.70) .. controls (4.04,-5.03) and (4.58,-5.03) .. (4.58,-5.03)
+          (4.58,-5.03) .. controls (5.71,-5.03) and (5.71,-3.80) .. (5.71,-3.80)
+          (5.71,-3.80) .. controls (5.71,-2.99) and (5.14,-1.82) .. (5.14,-1.82)
+          -- cycle;
+      \end{scope}
+    }
+  }
+}
+ 
+% Command to display Michelin Man icons (similar to your star scoring)
+\newcommand\michelinman[2]{%
+  \begin{tikzpicture}[baseline=-0.4ex]
+    \foreach \i in {1,...,#2} {
+      \begin{scope}[
+        shift={(\i*5ex,0)},    % spacing between icons
+        scale=0.8              % size adjustment
+      ]
+        \ifnum\i>#1
+          % Empty (outline only)
+          \draw[michelinred, line width=0.15pt] 
+            (6.24,0.69) -- (6.24,0.20)
+            (6.24,0.20) .. controls (6.24,-0.54) and (5.77,-1.02) .. (5.05,-1.02)
+            (5.05,-1.02) .. controls (4.27,-1.02) and (3.83,-0.53) .. (3.83,0.29)
+            (3.83,0.29) -- (3.83,0.44)
+            (3.83,0.44) .. controls (3.83,0.48) and (3.84,0.51) .. (3.84,0.51)
+            (3.84,0.51) -- (3.85,0.68)
+            (3.85,0.68) .. controls (3.11,0.15) and (2.52,0.15) .. (2.52,0.15)
+            (2.52,0.15) .. controls (2.06,0.15) and (1.64,0.46) .. (1.64,0.46)
+            (1.64,0.46) .. controls (1.24,0.75) and (1.05,1.22) .. (1.05,1.22)
+            (1.05,1.22) .. controls (0.91,1.55) and (0.91,1.88) .. (0.91,1.88)
+            (0.91,1.88) .. controls (0.91,2.89) and (2.07,3.42) .. (2.07,3.42)
+            (2.07,3.42) -- (2.22,3.49)
+            (2.22,3.49) .. controls (0.91,4.09) and (0.91,5.11) .. (0.91,5.11)
+            (0.91,5.11) .. controls (0.91,5.80) and (1.39,6.32) .. (1.39,6.32)
+            (1.39,6.32) .. controls (1.39,6.84) and (1.99,6.89) .. (1.99,6.89)
+            (1.99,6.89) -- (2.12,6.79)
+            (2.12,6.79) .. controls (2.10,6.99) and (2.10,7.27) .. (2.10,7.27)
+            (2.10,7.27) .. controls (2.10,8.02) and (2.57,8.495) .. (2.57,8.495)
+            (2.57,8.495) .. controls (2.57,8.97) and (3.36,8.97) .. (3.36,8.97)
+            (3.36,8.97) .. controls (4.15,8.97) and (4.595,8.475) .. (4.595,8.475)
+            (4.595,8.475) .. controls (5.03,7.98) and (5.03,7.58) .. (5.03,7.58)
+            (5.03,7.58) -- (5.03,7.19)
+            (5.03,7.19) .. controls (5.77,7.72) and (6.35,7.72) .. (6.35,7.72)
+            (6.35,7.72) .. controls (7.00,7.72) and (7.475,7.195) .. (7.475,7.195)
+            (7.475,7.195) .. controls (7.95,6.67) and (7.95,5.99) .. (7.95,5.99)
+            (7.95,5.99) .. controls (7.95,4.97) and (6.79,4.44) .. (6.79,4.44)
+            (6.79,4.44) -- (6.64,4.37)
+            (6.64,4.37) .. controls (7.95,3.77) and (7.95,2.76) .. (7.95,2.76)
+            (7.95,2.76) .. controls (7.95,2.11) and (7.48,1.57) .. (7.48,1.57)
+            (7.48,1.57) .. controls (7.48,1.03) and (6.345,1.03) .. (6.345,1.03)
+            (6.345,1.03) .. controls (5.175,1.45) and (5.175,1.45) .. (5.175,1.45)
+            (5.175,1.45) -- (5.40,-1.34)
+            (5.40,-1.34) .. controls (6.56,-3.03) and (7.55,-3.03) .. (7.55,-3.03)
+            (7.55,-3.03) .. controls (7.96,-3.03) and (8.295,-2.66) .. (8.295,-2.66)
+            (8.295,-2.66) .. controls (8.63,-2.29) and (8.63,-2.20) .. (8.63,-2.20)
+            (8.63,-2.20) .. controls (8.63,-0.96) and (5.95,-0.73) .. (5.95,-0.73)
+            (5.95,-0.73) -- (5.95,-0.44)
+            (5.95,-0.44) .. controls (7.28,-0.33) and (7.955,0.04) .. (7.955,0.04)
+            (7.955,0.04) .. controls (8.63,0.41) and (8.63,1.03) .. (8.63,1.03)
+            (8.63,1.03) .. controls (8.63,1.48) and (8.305,1.855) .. (8.305,1.855)
+            (8.305,1.855) .. controls (7.98,2.23) and (7.55,2.23) .. (7.55,2.23)
+            (7.55,2.23) .. controls (6.54,2.23) and (5.40,0.53) .. (5.40,0.53)
+            (5.40,0.53) -- (5.14,0.68)
+            (5.14,0.68) .. controls (5.71,1.84) and (5.71,2.64) .. (5.71,2.64)
+            (5.71,2.64) .. controls (5.71,3.88) and (4.58,3.88) .. (4.58,3.88)
+            (4.58,3.88) .. controls (4.04,3.88) and (3.74,3.55) .. (3.74,3.55)
+            (3.74,3.55) .. controls (3.45,3.20) and (3.45,2.67) .. (3.45,2.67)
+            (3.45,2.67) .. controls (3.45,1.87) and (4.02,0.68) .. (4.02,0.68)
+            (4.02,0.68) -- (3.76,0.54)
+            (3.76,0.54) .. controls (2.62,2.24) and (1.61,2.24) .. (1.61,2.24)
+            (1.61,2.24) .. controls (1.20,2.24) and (0.865,1.885) .. (0.865,1.885)
+            (0.865,1.885) .. controls (0.53,1.53) and (0.53,1.06) .. (0.53,1.06)
+            (0.53,1.06) .. controls (0.53,-0.18) and (3.20,-0.41) .. (3.20,-0.41)
+            (3.20,-0.41) -- (3.20,-0.70)
+            (3.20,-0.70) .. controls (0.53,-0.92) and (0.53,-2.17) .. (0.53,-2.17)
+            (0.53,-2.17) .. controls (0.53,-2.61) and (0.85,-2.99) .. (0.85,-2.99)
+            (0.85,-2.99) .. controls (1.17,-3.37) and (1.61,-3.37) .. (1.61,-3.37)
+            (1.61,-3.37) .. controls (2.60,-3.37) and (3.76,-1.68) .. (3.76,-1.68)
+            (3.76,-1.68) -- (4.02,-1.82)
+            (4.02,-1.82) .. controls (3.45,-2.99) and (3.45,-3.82) .. (3.45,-3.82)
+            (3.45,-3.82) .. controls (3.45,-4.35) and (3.74,-4.70) .. (3.74,-4.70)
+            (3.74,-4.70) .. controls (4.04,-5.03) and (4.58,-5.03) .. (4.58,-5.03)
+            (4.58,-5.03) .. controls (5.71,-5.03) and (5.71,-3.80) .. (5.71,-3.80)
+            (5.71,-3.80) .. controls (5.71,-2.99) and (5.14,-1.82) .. (5.14,-1.82)
+            -- cycle;
+        \else
+          % Filled
+          \pic {michelinman=michelinred};
+        \fi
+      \end{scope}
+    }
+  \end{tikzpicture}%
+}
+
+
+\def \globalscale {0.0200000}
+\newcommand\scoremichelin{
+    \begin{tikzpicture}[y=1cm, x=1cm, yscale=\globalscale,xscale=\globalscale, every node/.append style={scale=\globalscale}, inner sep=0pt, outer sep=0pt]
+      \path[fill=red] (16.51, -1.8256) -- (16.51, -0.5292) .. controls (16.51, 0.7761) and (16.0955, 1.8521) .. (15.2665, 2.6988) .. controls (10.7421, 3.9688) and (9.6661, 3.5366) .. (8.89, 2.6723) -- (7.7258, -1.1906) .. controls (7.7258, -1.2612) and (7.7347, -1.3229) .. (7.7523, -1.3758) -- (7.7788, -1.8256) .. controls (6.4735, -0.8908) and (5.3005, -0.4233) .. (4.2598, -0.4233) .. controls (3.4484, -0.4233) and (2.6723, -0.6967) .. (1.9315, -1.2435) .. controls (1.2259, -1.7551) and (0.7056, -2.4253) .. (0.3704, -3.2544) .. controls (0.1235, -3.8365) and (0.0, -4.4185) .. (0.0, -5.0006) .. controls (0.0, -6.7822) and (1.0231, -8.1403) .. (3.0692, -9.0752) -- (3.466, -9.2604) .. controls (1.1553, -10.3188) and (0.0, -11.7475) .. (0.0, -13.5467) .. controls (0.0, -14.7638) and (0.4233, -15.8309) .. (1.27, -16.7481) .. controls (5.3446, -18.124) and (6.3941, -17.7447) .. (7.4348, -16.9863) -- (7.7788, -16.7217) .. controls (7.7435, -17.0744) and (7.7258, -17.4978) .. (7.7258, -17.9917) .. controls (7.7258, -19.3146) and (8.1403, -20.395) .. (8.9694, -21.2328) .. controls (13.5114, -22.4896) and (14.5918, -22.053) .. (15.3591, -21.1799) -- (16.51, -16.7217) .. controls (17.8153, -17.6565) and (18.9794, -18.124) .. (20.0025, -18.124) .. controls (21.149, -18.124) and (22.1412, -17.6609) .. (22.9791, -16.7349) .. controls (24.2358, -11.7475) and (23.2128, -10.3805) .. (21.1667, -9.4456) -- (20.7698, -9.2604) .. controls (23.0805, -8.2021) and (24.2358, -6.7822) .. (24.2358, -5.0006) .. controls (24.2358, -3.8541) and (23.8213, -2.8046) .. (22.9923, -1.8521) -- cycle(14.2875, -6.2971) .. controls (16.3336, -3.3161) and (18.2298, -1.8256) .. (19.976, -1.8256) .. controls (20.6992, -1.8256) and (21.3563, -2.1519) .. (21.9472, -2.8046) .. controls (22.8335, -7.1878) and (20.4699, -8.4843) .. (15.7427, -8.89) -- (15.7427, -9.6573) .. controls (18.0887, -9.8513) and (19.857, -10.2747) .. (21.0476, -10.9273) .. controls (22.8335, -14.3404) and (22.5469, -15.068) .. (21.9736, -15.7295) .. controls (18.1945, -16.7217) and (16.2983, -15.2224) .. (14.2875, -12.2238) -- (13.5996, -12.6206) .. controls (14.605, -14.6667) and (15.1077, -16.3953) .. (15.1077, -17.8065) .. controls (15.1077, -19.9937) and (14.1111, -21.0873) .. (12.1179, -21.0873) .. controls (11.1654, -21.0873) and (10.4246, -20.7963) .. (9.8954, -20.2142) .. controls (9.3839, -19.5968) and (9.1281, -18.8207) .. (9.1281, -17.8858) .. controls (9.1281, -16.4747) and (9.6308, -14.7197) .. (10.6363, -12.6206) -- (9.9483, -12.2238) .. controls (7.9375, -15.2224) and (6.0413, -16.7217) .. (4.2598, -16.7217) .. controls (3.5366, -16.7217) and (2.8795, -16.4086) .. (2.2886, -15.7824) .. controls (1.4023, -11.3594) and (3.7571, -10.063) .. (8.4667, -9.6573) -- (8.4667, -8.89) .. controls (3.7571, -8.5019) and (1.4023, -7.2055) .. (1.4023, -5.0006) .. controls (1.4023, -4.2245) and (1.6845, -3.5013) .. (2.249, -2.831) .. controls (6.006, -1.8256) and (7.9022, -3.3161) .. (9.9483, -6.2971) -- (10.6363, -5.9267) .. controls (9.6308, -3.8629) and (9.1281, -2.099) .. (9.1281, -0.635) .. controls (9.1281, 0.2999) and (9.3839, 1.076) .. (9.8954, 1.6933) .. controls (10.4246, 2.2754) and (11.1654, 2.5665) .. (12.1179, 2.5665) .. controls (14.1111, 2.5665) and (15.1077, 1.4817) .. (15.1077, -0.6879) .. controls (15.1077, -2.1167) and (14.605, -3.8629) .. (13.5996, -5.9267) -- cycle;
+    \end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\def \globalscale {0.20}
+\newcommand\michelin{
+    \begin{tikzpicture}[y=1cm, x=1cm, yscale=\globalscale,xscale=\globalscale, every node/.append style={scale=\globalscale}, inner sep=0pt, outer sep=0pt]
+      % Outer path - stroked with consistent line width
+      \path[draw=red, line width=8, line cap=round, line join=round, fill=none] 
+        (12.118, 2.567) 
+        .. controls (10.166, 2.567) and (9.384, 1.693) .. 
+        (8.895, 0.275)
+        .. controls (8.590, -0.900) and (8.467, -2.540) ..
+        (9.948, -6.297)
+        .. controls (7.902, -3.316) and (6.006, -1.826) ..
+        (4.260, -1.826)
+        .. controls (2.514, -1.826) and (1.402, -3.316) ..
+        (1.402, -5.001)
+        .. controls (1.402, -7.206) and (3.757, -8.502) ..
+        (8.467, -8.890)
+        -- (8.467, -9.657)
+        .. controls (3.757, -10.063) and (1.402, -11.359) ..
+        (1.402, -13.547)
+        .. controls (1.402, -15.232) and (2.514, -16.722) ..
+        (4.260, -16.722)
+        .. controls (6.006, -16.722) and (7.902, -15.232) ..
+        (9.948, -12.224)
+        .. controls (8.467, -15.981) and (8.590, -17.621) ..
+        (8.895, -18.796)
+        .. controls (9.384, -20.214) and (10.166, -21.087) ..
+        (12.118, -21.087)
+        .. controls (14.070, -21.087) and (14.852, -20.214) ..
+        (15.341, -18.796)
+        .. controls (15.646, -17.621) and (15.769, -15.981) ..
+        (14.288, -12.224)
+        .. controls (16.334, -15.232) and (18.230, -16.722) ..
+        (19.976, -16.722)
+        .. controls (21.722, -16.722) and (22.834, -15.232) ..
+        (22.834, -13.547)
+        .. controls (22.834, -11.359) and (20.479, -10.063) ..
+        (15.743, -9.657)
+        -- (15.743, -8.890)
+        .. controls (20.479, -8.502) and (22.834, -7.206) ..
+        (22.834, -5.001)
+        .. controls (22.834, -3.316) and (21.722, -1.826) ..
+        (19.976, -1.826)
+        .. controls (18.230, -1.826) and (16.334, -3.316) ..
+        (14.288, -6.297)
+        .. controls (15.769, -2.540) and (15.646, -0.900) ..
+        (15.341, 0.275)
+        .. controls (14.852, 1.693) and (14.070, 2.567) ..
+        (12.118, 2.567)
+        -- cycle;
+    \end{tikzpicture}
+}
+
+% PDF options
+\usepackage{hyperref}
+\hypersetup{
+pdftitle={The Almost Perfect Generative Michelin Star},
+pdfauthor={spark},
+}
+\title{the Almost Perfect Generative Michelin Star}
+
+\begin{document}%
+% \TileWallPaper{0.5\textwidth}{0.5\textheight}{paper_background.jpg}%
+\begin{multicols}{3}
+%\maketitle
+% ----------------------------------------------------------------------
+% First column
+% ----------------------------------------------------------------------
+\begin{centering}
+\Large \scalebox{1.2}[1.0]{the Almost Perfect Generative Michelin Star}
+
+\vspace{3mm}
+
+\rule[3pt]{2em}{0.7pt}
+
+\vspace{2mm}
+
+\large \scalebox{1.15}[1]{Benoit Baudry, Madjda Fares, Yogya Tulip Gamage}\\[2.5mm]
+\scalebox{1.15}[1]{of the software performing arts research krew.}
+
+\vspace{3mm}
+
+\rule[3pt]{2em}{0.7pt}
+
+\vspace{2mm}
+
+\end{centering}
+
+\openup 1.09mm
+\begin{centering}
+\large \scalebox{1.2}[1.0]{beauty}
+    
+\end{centering}
+
+Science makes sense of the beautiful mysteries of the world. It proposes ways to understand the invisible, the intangible, the untestable. On this journey, many scientists wish to measure phenomena that are not directly measurable. In design science, this process is referred to as \href{https://en.wikipedia.org/wiki/Operationalization}{operationalization}. Intuitively, the operationalization process is similar to what literature or cinema critics do when they assign a rating to a movie or novel review \cite{niraj2015impact,maryl2023operationalising}. 
+
+When exploring the intangible, we collect evidence, metrics, impressions and make sense of it. For example, software easter eggs researchers look for easters in the most improbable corners of the internet, count them, count the lines of code, measure the length of execution traces, and eventually collect the impressions from easter egg hunters. Based on sound and quiet processes, these elements are turned into an operationalized assessment; ``that's a four-star easter egg!''
+
+In this search for operationalization, painting, dance, music, cinema, sculpture, sports, or food experts have created a vast and diverse language of graphical cues to represent ratings. From various forms of stars and happy faces to more domain-specific icons such as footballs, sailing boats or tires. Today these cues can be found in a variety of media and pop culture publication, from the regular thumbs-up
+\emoji{+1}, star \emoji{star}, clap \emoji{clap}, or smiley face \emoji{smiley} to more emotional heart \emoji{heart}, heart eyes \emoji{heart-eyes} or even star struck \emoji{star-struck}. All these cues can be used to rank and categorize objects and concepts that are non categorical by nature, such as a great movie \emoji{star}\emoji{star}\emoji{star}, a good software easter egg \emoji{star}, or a world-class package manager to host, distribute and secure Minecraft mods \emoji{1st-place-medal}.
+
+Good news for beautiful science \cite{dion1972beautiful}, a vast majority of these icons are natively available for the scientific literature thanks to Lua\LaTeX and the emoji package \cite{emoji}. 
+
+Yet, there is one shortcoming for truly beautiful, sophisticated, gourmet, rankings in the scientific literature. The iconic Michelin star is not available in unicode, leaving scientists, researchers, students, and scientific journalists totally helpless when it comes to ranking with class. Michelin stars inspire \cite{bang2022does,ercan2024plate} and we wish to let scientists enjoy it as much as the anonymous Michelin jurors do when they sit at a new table.
+
+In this work, we contribute to the enchantment of scientific literature with a high resolution, scalable, almost perfect Michelin star, in Tikz \cite{kottwitz2023latex}.
+
+
+
+\begin{centering}
+\vspace{3mm}
+
+\rule[3pt]{2em}{0.7pt}
+
+\vspace{2mm}
+
+\large \scalebox{1.2}[1.0]{uncanny}
+    
+\end{centering}
+
+This work is prepared and edited in the \raisebox{0pt}[0pt][0pt]{%
+o\raisebox{-0.2ex}{oo}%
+\raisebox{-0.5ex}{o}%
+\raisebox{-1.2ex}{o}%
+\raisebox{-2.2ex}{o}%
+\raisebox{-2.6ex}{l}
+\raisebox{-2.99ex}{d}} tradition of humor in science. Sitting on the shoulders of the Monty Python and all IgNobel laureates, we wish to share our serious and bustling journey to the center of TikZ, searching for stars. Prompts and floating points numbers we found, as well as mysterious glyphs of ancient continuous integration pipelines. With no compass app, other than our sense of beauty and our appetite, we searched and digged. Rewarded we were, on the day the paper compiled \cite{fares2026unpackingsecurityscannersgithub}. This tale is nothing short of code and red (\{RGB\}\{206,93,75\} to be precise, because when you like colors and code, well you want to be precise and because humor does in no way prevent us from liking number and curly brackets) and we hope you will appreciate it.
+
+
+
+\begin{centering}
+\vspace{3mm}
+
+\rule[3pt]{2em}{0.7pt}
+
+\vspace{2mm}
+
+\large \scalebox{1.2}[1.0]{astronomy}
+
+
+    
+\end{centering}
+
+
+Our tale begins in the  glorious era where AI confidently answers questions we did not even think to ask. Confident and impatient we naturally turn to the all-powerful Claude Sonnet 4.6 and ask for TikZ code to draw a Michelin star. \emoji{smiling-face-with-sunglasses}. Claude's legendary swiftness graciously generates a piece of TikZ code in less time than we need to get to the first bite of a Michelin dinner. Feverish, we can't eat. We need to execute the code (\autoref{lst:michelinmodel}). It looks complicated, packed with enough mysterious numbers to convince us it must be correct. \emoji{woozy-face} We compile it, we execute it, and ...... we get a red, strange looking, glitchy, almost tired Michelin star. the \texttt{buggy Michelin star}.
+
+We appreciate its abstract beauty, as well as Claude's diligent efforts. But our faith in beautiful science fuels our ambition to create a fresh, delicate, sophisticated Michelin star. So, in a moment of nostalgic wisdom, we discover a Python package called svg2tikz with good, old fashioned human-written code. \emoji{heart-eyes}. Feverish again, we search the internet for an standard vector graphics version of the Michelin star. As soon as we find it, we feed it into the converter. We execute and done. We get another impressively complex TikZ code, which we present in \autoref{lst:michelinglitchy}. To our surprise, this version generates the \texttt{glitchy Michelin star}, a star that is closer to the real thing, \emoji{clap} still a little glitchy.
+At this point, we decide the \texttt{glitchy Michelin star} has potential. So, we return to Claude Sonnet 4.6, present it with this improved but imperfect TikZ code, and ask it to fix the glitches. And....... tada! \emoji{tada}\emoji{tada}\emoji{tada}. We have it! The spectacular TikZ code presented in \autoref{lst:michelinperfect} that delivers a smooth, red star full of savour and flowers, full of dreams of dishes that cannot exist and rare porcelin, a true appetizer, an enhancer of scientific discoveries, a reward after any long-running experiment and uncanny major revision for reviewer 2. The One. The Only. The \texttt{almost perfect Michelin star}. 
+
+
+\begin{lstlisting}[language=JavaScript,
+caption={The glitchy TikZ code towards a Michelin star \emoji{+1}},
+label={lst:michelinglitchy},
+captionpos=b]
+\def \globalscale {0.0200000}
+\newcommand\scoremichelin{
+    \begin{tikzpicture}[y=1cm, x=1cm, yscale=\globalscale,xscale=\globalscale, every node/.append style={scale=\globalscale}, inner sep=0pt, outer sep=0pt]
+      \path[fill=red] (16.51, -1.8256) -- (16.51, -0.5292) .. controls (16.51, 0.7761) and (16.0955, 1.8521) .. (15.2665, 2.6988) .. controls (10.7421, 3.9688) and (9.6661, 3.5366) .. (8.89, 2.6723) -- (7.7258, -1.1906) .. controls (7.7258, -1.2612) and (7.7347, -1.3229) .. (7.7523, -1.3758) -- (7.7788, -1.8256) .. controls (6.4735, -0.8908) and (5.3005, -0.4233) .. (4.2598, -0.4233) .. controls (3.4484, -0.4233) and (2.6723, -0.6967) .. (1.9315, -1.2435) .. controls (1.2259, -1.7551) and (0.7056, -2.4253) .. (0.3704, -3.2544) .. controls (0.1235, -3.8365) and (0.0, -4.4185) .. (0.0, -5.0006) .. controls (0.0, -6.7822) and (1.0231, -8.1403) .. (3.0692, -9.0752) -- (3.466, -9.2604) .. controls (1.1553, -10.3188) and (0.0, -11.7475) .. (0.0, -13.5467) .. controls (0.0, -14.7638) and (0.4233, -15.8309) .. (1.27, -16.7481) .. controls (5.3446, -18.124) and (6.3941, -17.7447) .. (7.4348, -16.9863) -- (7.7788, -16.7217) .. controls (7.7435, -17.0744) and (7.7258, -17.4978) .. (7.7258, -17.9917) .. controls (7.7258, -19.3146) and (8.1403, -20.395) .. (8.9694, -21.2328) .. controls (13.5114, -22.4896) and (14.5918, -22.053) .. (15.3591, -21.1799) -- (16.51, -16.7217) .. controls (17.8153, -17.6565) and (18.9794, -18.124) .. (20.0025, -18.124) .. controls (21.149, -18.124) and (22.1412, -17.6609) .. (22.9791, -16.7349) .. controls (24.2358, -11.7475) and (23.2128, -10.3805) .. (21.1667, -9.4456) -- (20.7698, -9.2604) .. controls (23.0805, -8.2021) and (24.2358, -6.7822) .. (24.2358, -5.0006) .. controls (24.2358, -3.8541) and (23.8213, -2.8046) .. (22.9923, -1.8521) -- cycle(14.2875, -6.2971) .. controls (16.3336, -3.3161) and (18.2298, -1.8256) .. (19.976, -1.8256) .. controls (20.6992, -1.8256) and (21.3563, -2.1519) .. (21.9472, -2.8046) .. controls (22.8335, -7.1878) and (20.4699, -8.4843) .. (15.7427, -8.89) -- (15.7427, -9.6573) .. controls (18.0887, -9.8513) and (19.857, -10.2747) .. (21.0476, -10.9273) .. controls (22.8335, -14.3404) and (22.5469, -15.068) .. (21.9736, -15.7295) .. controls (18.1945, -16.7217) and (16.2983, -15.2224) .. (14.2875, -12.2238) -- (13.5996, -12.6206) .. controls (14.605, -14.6667) and (15.1077, -16.3953) .. (15.1077, -17.8065) .. controls (15.1077, -19.9937) and (14.1111, -21.0873) .. (12.1179, -21.0873) .. controls (11.1654, -21.0873) and (10.4246, -20.7963) .. (9.8954, -20.2142) .. controls (9.3839, -19.5968) and (9.1281, -18.8207) .. (9.1281, -17.8858) .. controls (9.1281, -16.4747) and (9.6308, -14.7197) .. (10.6363, -12.6206) -- (9.9483, -12.2238) .. controls (7.9375, -15.2224) and (6.0413, -16.7217) .. (4.2598, -16.7217) .. controls (3.5366, -16.7217) and (2.8795, -16.4086) .. (2.2886, -15.7824) .. controls (1.4023, -11.3594) and (3.7571, -10.063) .. (8.4667, -9.6573) -- (8.4667, -8.89) .. controls (3.7571, -8.5019) and (1.4023, -7.2055) .. (1.4023, -5.0006) .. controls (1.4023, -4.2245) and (1.6845, -3.5013) .. (2.249, -2.831) .. controls (6.006, -1.8256) and (7.9022, -3.3161) .. (9.9483, -6.2971) -- (10.6363, -5.9267) .. controls (9.6308, -3.8629) and (9.1281, -2.099) .. (9.1281, -0.635) .. controls (9.1281, 0.2999) and (9.3839, 1.076) .. (9.8954, 1.6933) .. controls (10.4246, 2.2754) and (11.1654, 2.5665) .. (12.1179, 2.5665) .. controls (14.1111, 2.5665) and (15.1077, 1.4817) .. (15.1077, -0.6879) .. controls (15.1077, -2.1167) and (14.605, -3.8629) .. (13.5996, -5.9267) -- cycle;
+    \end{tikzpicture}
+}
+\end{lstlisting}
+
+
+
+
+
+\begin{lstlisting}[language=JavaScript,caption={The tikz code for the almost perfect Michelin star \emoji{star-struck}},captionpos=b, label={lst:michelinperfect},]
+
+\def \globalscale {0.3}
+\newcommand\michelin{
+    \begin{tikzpicture}[y=1cm, x=1cm, yscale=\globalscale,xscale=\globalscale, every node/.append style={scale=\globalscale}, inner sep=0pt, outer sep=0pt]
+      % Outer path - stroked with consistent line width
+      \path[draw=red, line width=8, line cap=round, line join=round, fill=none] 
+        (12.118, 2.567) 
+        .. controls (10.166, 2.567) and (9.384, 1.693) .. 
+        (8.895, 0.275)
+        .. controls (8.590, -0.900) and (8.467, -2.540) ..
+        (9.948, -6.297)
+        .. controls (7.902, -3.316) and (6.006, -1.826) ..
+        (4.260, -1.826)
+        .. controls (2.514, -1.826) and (1.402, -3.316) ..
+        (1.402, -5.001)
+        .. controls (1.402, -7.206) and (3.757, -8.502) ..
+        (8.467, -8.890)
+        -- (8.467, -9.657)
+        .. controls (3.757, -10.063) and (1.402, -11.359) ..
+        (1.402, -13.547)
+        .. controls (1.402, -15.232) and (2.514, -16.722) ..
+        (4.260, -16.722)
+       .. controls (6.006, -16.722) and (7.902, -15.232) ..  
+       (9.948, -12.224)
+        .. controls (8.467, -15.981) and (8.590, -17.621) ..
+        (8.895, -18.796)
+        .. controls (9.384, -20.214) and (10.166, -21.087) ..
+        (12.118, -21.087)
+        .. controls (14.070, -21.087) and (14.852, -20.214) ..
+        (15.341, -18.796)
+        .. controls (15.646, -17.621) and (15.769, -15.981) ..
+        (14.288, -12.224)
+        .. controls (16.334, -15.232) and (18.230, -16.722) ..
+        (19.976, -16.722)
+        .. controls (21.722, -16.722) and (22.834, -15.232) ..
+        (22.834, -13.547)
+        .. controls (22.834, -11.359) and (20.479, -10.063) ..
+        (15.743, -9.657)
+        -- (15.743, -8.890)
+        .. controls (20.479, -8.502) and (22.834, -7.206) ..
+        (22.834, -5.001)
+        .. controls (22.834, -3.316) and (21.722, -1.826) ..
+        (19.976, -1.826)
+        .. controls (18.230, -1.826) and (16.334, -3.316) ..
+        (14.288, -6.297)
+        .. controls (15.769, -2.540) and (15.646, -0.900) ..
+        (15.341, 0.275)
+        .. controls (14.852, 1.693) and (14.070, 2.567) ..
+        (12.118, 2.567)
+        -- cycle;
+    \end{tikzpicture}
+}
+\end{lstlisting}
+
+
+\begin{center}
+
+\michelinman{1}{1}
+
+\vspace{3mm}
+\Large \scalebox{1.15}[1]{The \texttt{buggy Michelin star} generated with Claude}
+
+\scoremichelin
+\vspace{3mm}
+\Large \scalebox{1.15}[1]{The \texttt{glitchy Michelin star} generated with a good old Python library}
+
+\michelin
+
+\michelin \michelin
+
+\michelin \michelin \michelin
+
+\Large \scalebox{1.15}[1]{The \texttt{almost perfect Michelin star}}
+
+\end{center}
+
+
+
+
+
+
+\begin{lstlisting}[language=JavaScript,caption={The buggy tikz code towards a Michelin star \emoji{-1}},captionpos=b, label={lst:michelinmodel}]
+\label{lst:michelinmodel}
+\newcommand\michelinman[2]{%
+  \begin{tikzpicture}[baseline=-0.4ex]
+    \foreach \i in {1,...,#2} {
+      \begin{scope}[
+        shift={(\i*5ex,0)},    % spacing between icons
+        scale=0.8              % size adjustment
+      ]
+        \ifnum\i>#1
+          % Empty (outline only)
+          \draw[michelinred, line width=0.15pt] 
+            (6.24,0.69) -- (6.24,0.20)
+            (6.24,0.20) .. controls (6.24,-0.54) and (5.77,-1.02) .. (5.05,-1.02)
+            (5.05,-1.02) .. controls (4.27,-1.02) and (3.83,-0.53) .. (3.83,0.29)
+            (3.83,0.29) -- (3.83,0.44)
+            (3.83,0.44) .. controls (3.83,0.48) and (3.84,0.51) .. (3.84,0.51)
+            (3.84,0.51) -- (3.85,0.68)
+            (3.85,0.68) .. controls (3.11,0.15) and (2.52,0.15) .. (2.52,0.15)
+            (2.52,0.15) .. controls (2.06,0.15) and (1.64,0.46) .. (1.64,0.46)
+            (1.64,0.46) .. controls (1.24,0.75) and (1.05,1.22) .. (1.05,1.22)
+            (1.05,1.22) .. controls (0.91,1.55) and (0.91,1.88) .. (0.91,1.88)
+            (0.91,1.88) .. controls (0.91,2.89) and (2.07,3.42) .. (2.07,3.42)
+            (2.07,3.42) -- (2.22,3.49)
+            (2.22,3.49) .. controls (0.91,4.09) and (0.91,5.11) .. (0.91,5.11)
+            (0.91,5.11) .. controls (0.91,5.80) and (1.39,6.32) .. (1.39,6.32)
+            (1.39,6.32) .. controls (1.39,6.84) and (1.99,6.89) .. (1.99,6.89)
+            (1.99,6.89) -- (2.12,6.79)
+            (2.12,6.79) .. controls (2.10,6.99) and (2.10,7.27) .. (2.10,7.27)
+            (2.10,7.27) .. controls (2.10,8.02) and (2.57,8.495) .. (2.57,8.495)
+            (2.57,8.495) .. controls (2.57,8.97) and (3.36,8.97) .. (3.36,8.97)
+            (3.36,8.97) .. controls (4.15,8.97) and (4.595,8.475) .. (4.595,8.475)
+            (4.595,8.475) .. controls (5.03,7.98) and (5.03,7.58) .. (5.03,7.58)
+            (5.03,7.58) -- (5.03,7.19)
+            (5.03,7.19) .. controls (5.77,7.72) and (6.35,7.72) .. (6.35,7.72)
+            (6.35,7.72) .. controls (7.00,7.72) and (7.475,7.195) .. (7.475,7.195)
+            (7.475,7.195) .. controls (7.95,6.67) and (7.95,5.99) .. (7.95,5.99)
+            (7.95,5.99) .. controls (7.95,4.97) and (6.79,4.44) .. (6.79,4.44)
+            (6.79,4.44) -- (6.64,4.37)
+            (6.64,4.37) .. controls (7.95,3.77) and (7.95,2.76) .. (7.95,2.76)
+            (7.95,2.76) .. controls (7.95,2.11) and (7.48,1.57) .. (7.48,1.57)
+            (7.48,1.57) .. controls (7.48,1.03) and (6.345,1.03) .. (6.345,1.03)
+            (6.345,1.03) .. controls (5.175,1.45) and (5.175,1.45) .. (5.175,1.45)
+            (5.175,1.45) -- (5.40,-1.34)
+            (5.40,-1.34) .. controls (6.56,-3.03) and (7.55,-3.03) .. (7.55,-3.03)
+            (7.55,-3.03) .. controls (7.96,-3.03) and (8.295,-2.66) .. (8.295,-2.66)
+            (8.295,-2.66) .. controls (8.63,-2.29) and (8.63,-2.20) .. (8.63,-2.20)
+            (8.63,-2.20) .. controls (8.63,-0.96) and (5.95,-0.73) .. (5.95,-0.73)
+            (5.95,-0.73) -- (5.95,-0.44)
+            (5.95,-0.44) .. controls (7.28,-0.33) and (7.955,0.04) .. (7.955,0.04)
+            (7.955,0.04) .. controls (8.63,0.41) and (8.63,1.03) .. (8.63,1.03)
+            (8.63,1.03) .. controls (8.63,1.48) and (8.305,1.855) .. (8.305,1.855)
+            (8.305,1.855) .. controls (7.98,2.23) and (7.55,2.23) .. (7.55,2.23)
+            (7.55,2.23) .. controls (6.54,2.23) and (5.40,0.53) .. (5.40,0.53)
+            (5.40,0.53) -- (5.14,0.68)
+            (5.14,0.68) .. controls (5.71,1.84) and (5.71,2.64) .. (5.71,2.64)
+            (5.71,2.64) .. controls (5.71,3.88) and (4.58,3.88) .. (4.58,3.88)
+            (4.58,3.88) .. controls (4.04,3.88) and (3.74,3.55) .. (3.74,3.55)
+            (3.74,3.55) .. controls (3.45,3.20) and (3.45,2.67) .. (3.45,2.67)
+            (3.45,2.67) .. controls (3.45,1.87) and (4.02,0.68) .. (4.02,0.68)
+            (4.02,0.68) -- (3.76,0.54)
+            (3.76,0.54) .. controls (2.62,2.24) and (1.61,2.24) .. (1.61,2.24)
+            (1.61,2.24) .. controls (1.20,2.24) and (0.865,1.885) .. (0.865,1.885)
+            (0.865,1.885) .. controls (0.53,1.53) and (0.53,1.06) .. (0.53,1.06)
+            (0.53,1.06) .. controls (0.53,-0.18) and (3.20,-0.41) .. (3.20,-0.41)
+            (3.20,-0.41) -- (3.20,-0.70)
+            (3.20,-0.70) .. controls (0.53,-0.92) and (0.53,-2.17) .. (0.53,-2.17)
+            (0.53,-2.17) .. controls (0.53,-2.61) and (0.85,-2.99) .. (0.85,-2.99)
+            (0.85,-2.99) .. controls (1.17,-3.37) and (1.61,-3.37) .. (1.61,-3.37)
+            (1.61,-3.37) .. controls (2.60,-3.37) and (3.76,-1.68) .. (3.76,-1.68)
+            (3.76,-1.68) -- (4.02,-1.82)
+            (4.02,-1.82) .. controls (3.45,-2.99) and (3.45,-3.82) .. (3.45,-3.82)
+            (3.45,-3.82) .. controls (3.45,-4.35) and (3.74,-4.70) .. (3.74,-4.70)
+            (3.74,-4.70) .. controls (4.04,-5.03) and (4.58,-5.03) .. (4.58,-5.03)
+            (4.58,-5.03) .. controls (5.71,-5.03) and (5.71,-3.80) .. (5.71,-3.80)
+            (5.71,-3.80) .. controls (5.71,-2.99) and (5.14,-1.82) .. (5.14,-1.82)
+            -- cycle;
+        \else
+          % Filled
+          \pic {michelinman=michelinred};
+        \fi
+      \end{scope}
+    }
+  \end{tikzpicture}%
+}
+
+
+\end{lstlisting}
+
+
+
+\begin{centering}
+\vspace{3mm}
+
+\rule[3pt]{2em}{0.7pt}
+
+\vspace{2mm}
+
+\large \scalebox{1.2}[1.0]{credits}
+
+software libraries: tikz, latex, svg2tikz
+
+catering: eugene's son, café torre et fraction, le petit alep, mos
+
+soundtrack: hania rani, brian eno, santana, d'angelo
+
+thank you tristan miller for reproducing \href{https://github.com/logological/blood}{``Persecution of New Ideas'' by C. L. Blood}
+
+thank you friends: deepika tiwari, alireza nasirianfar, roxana pena mendieta, nadia gonzalez fernandez, lena mk, martin monperrus
+
+    
+\end{centering}
+
+\bibliographystyle{abbrv}
+\bibliography{michelin}
+
+\end{multicols}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
